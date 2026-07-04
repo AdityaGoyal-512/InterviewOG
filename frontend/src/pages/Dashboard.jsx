@@ -7,7 +7,7 @@ import SessionCard from "../components/SessionCard"
 
 const ROLES = [
   "MERN Stack Developer",
-  "MEAN Stack Developer",
+  "MERN Stack Developer",
   "Full Stack Python",
   "Full Stack Java",
   "Frontend Developer",
@@ -87,78 +87,91 @@ const Dashboard = () => {
 
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-12 space-y-8 sm:space-y-12 animate-in duration-700">
+    <div
+      className="relative min-h-screen bg-black overflow-hidden"
+      style={{
+        backgroundImage:
+          'radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)',
+        backgroundSize: '28px 28px',
+      }}
+    >
+      {/* ambient glows, purely decorative */}
+      <div className="pointer-events-none absolute -top-40 -left-40 h-[28rem] w-[28rem] rounded-full bg-teal-500/15 blur-[130px]" />
+      <div className="pointer-events-none absolute top-1/2 -right-40 h-[28rem] w-[28rem] rounded-full bg-purple-500/15 blur-[130px]" />
 
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-6 sm:pb-8">
-        <div>
-          <h1 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">Welcome, <span className="text-teal-600">{user.name.split(' ')[0]}</span> </h1>
-          <p className="text-slate-500 mt-1 text-sm sm:text-lg font-medium">Ready for your technical prep?</p>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="bg-teal-50 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl sm:rounded-2xl border border-teal-100 flex sm:block items-center gap-2">
-            <p className="text-[10px] text-teal-600 font-bold uppercase tracking-wider">Total Sessions</p>
-            <p className="text-xl sm:text-2xl font-black text-teal-700 leading-none">{sessions.length}</p>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-12 space-y-8 sm:space-y-12 animate-in duration-700">
+
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-6 sm:pb-8">
+          <div>
+            <h1 className="text-2xl sm:text-4xl font-semibold text-white tracking-tight">Welcome, <span className="text-teal-400">{user.name.split(' ')[0]}</span> </h1>
+            <p className="text-slate-400 mt-1 text-sm sm:text-lg font-medium">Ready for your technical prep?</p>
           </div>
-        </div>
-      </div>
-      <div className="bg-white rounded-2xl sm:rounded-[2.5rem] shadow-xl sm:shadow-2xl shadow-slate-200 border border-slate-100 overflow-hidden">
-        <div className="bg-slate-900 px-6 py-4 sm:px-8 sm:py-6">
-          <h2 className="text-lg font-bold text-white flex items-center">
-            <span className="bg-teal-500 w-1.5 h-5 rounded-full mr-3"></span>
-            New Interview
-          </h2>
-        </div>
-        <form onSubmit={onSubmit} className="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 items-end">
-          <div className="space-y-1.5">
-            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Role</label>
-            <select name="role" value={formData.role} onChange={onChange} className="w-full bg-slate-50 border-none rounded-xl sm:rounded-2xl p-3 text-sm font-semibold text-slate-700 focus:ring-2 focus:ring-teal-500">
-              {ROLES.map((role) => <option key={role} value={role}>{role}</option>)}</select>
-          </div>
-          <div className="grid grid-cols-2 gap-4 lg:contents">
-            <div className="space-y-1.5">
-              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Level</label>
-              <select name="level" value={formData.level} onChange={onChange} className="w-full bg-slate-50 border-none rounded-xl sm:rounded-2xl p-3 text-sm font-semibold text-slate-700 focus:ring-2 focus:ring-teal-500">
-                {LEVELS.map((level) => <option key={level} value={level}>{level}</option>)}</select>
-            </div>
-            <div className="space-y-1.5">
-              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Length</label>
-              <select name="count" value={formData.count} onChange={onChange} className="w-full bg-slate-50 border-none rounded-xl sm:rounded-2xl p-3 text-sm font-semibold text-slate-700 focus:ring-2 focus:ring-teal-500">
-                {COUNTS.map((count) => <option key={count} value={count}>{count} Qs</option>)}</select>
+          <div className="flex items-center gap-3">
+            <div className="bg-white/5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl sm:rounded-2xl border border-white/10 flex sm:block items-center gap-2">
+              <p className="text-[10px] text-teal-400 font-bold uppercase tracking-wider">Total Sessions</p>
+              <p className="text-xl sm:text-2xl font-semibold text-white leading-none">{sessions.length}</p>
             </div>
           </div>
-          <div className="space-y-1.5">
-            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Type</label>
-            <select name="interviewType" value={formData.interviewType} onChange={onChange} className="w-full bg-slate-50 border-none rounded-xl sm:rounded-2xl p-3 text-sm font-semibold text-slate-700 focus:ring-2 focus:ring-teal-500">
-              {TYPES.map((type) => <option key={type.value} value={type.value}>{type.label}</option>)}</select>
+        </div>
+        <div className="rounded-2xl sm:rounded-[2.5rem] border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] overflow-hidden backdrop-blur-xl">
+          <div className="px-6 py-4 sm:px-8 sm:py-6 border-b border-white/10">
+            <h2 className="text-lg font-semibold text-white flex items-center">
+              <span className="bg-teal-400 w-1.5 h-5 rounded-full mr-3"></span>
+              New Interview
+            </h2>
           </div>
-          <button type="submit" disabled={isProcessing} className={`w-full h-[48px] rounded-xl font-bold text-white flex items-center justify-center gap-2 ${isProcessing ? 'bg-slate-300' : 'bg-teal-600 hover:bg-teal-700'}`}>
-            {isProcessing ? <><span className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></span> Generating...</> : <span className="text-sm">Start Interview</span>}
-          </button>
-        </form>
-</div> {/* 3. Closing div for the card moved here */}
+          <form onSubmit={onSubmit} className="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 items-end">
+            <div className="space-y-1.5">
+              <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Role</label>
+              <select name="role" value={formData.role} onChange={onChange} className="w-full bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl p-3 text-sm font-medium text-white outline-none focus:border-teal-400/50 focus:ring-2 focus:ring-teal-400/30">
+                {ROLES.map((role) => <option key={role} value={role} className="bg-black text-white">{role}</option>)}</select>
+            </div>
+            <div className="grid grid-cols-2 gap-4 lg:contents">
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Level</label>
+                <select name="level" value={formData.level} onChange={onChange} className="w-full bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl p-3 text-sm font-medium text-white outline-none focus:border-teal-400/50 focus:ring-2 focus:ring-teal-400/30">
+                  {LEVELS.map((level) => <option key={level} value={level} className="bg-black text-white">{level}</option>)}</select>
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Length</label>
+                <select name="count" value={formData.count} onChange={onChange} className="w-full bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl p-3 text-sm font-medium text-white outline-none focus:border-teal-400/50 focus:ring-2 focus:ring-teal-400/30">
+                  {COUNTS.map((count) => <option key={count} value={count} className="bg-black text-white">{count} Qs</option>)}</select>
+              </div>
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Type</label>
+              <select name="interviewType" value={formData.interviewType} onChange={onChange} className="w-full bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl p-3 text-sm font-medium text-white outline-none focus:border-teal-400/50 focus:ring-2 focus:ring-teal-400/30">
+                {TYPES.map((type) => <option key={type.value} value={type.value} className="bg-black text-white">{type.label}</option>)}</select>
+            </div>
+            <button type="submit" disabled={isProcessing} className={`w-full h-[48px] rounded-xl font-semibold text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] ${isProcessing ? 'bg-white/10 text-slate-400' : 'bg-white text-black hover:bg-slate-200'}`}>
+              {isProcessing ? <><span className="animate-spin h-4 w-4 border-2 border-slate-500 border-t-transparent rounded-full"></span> Generating...</> : <span>Start Interview</span>}
+            </button>
+          </form>
+  </div>
 
-      {/* HISTORY LIST (Now separate from the creation card) */}
-      <div className="space-y-6 pb-20 sm:pb-0">
-        <h2 className="text-xl sm:text-2xl font-black text-slate-800 flex items-center px-2"><span className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-100 rounded-lg sm:rounded-xl flex items-center justify-center mr-3 text-sm sm:text-lg">📊</span> Interview History</h2>
-        {isLoading && sessions.length === 0 ? (
-          <div className="flex items-center justify-center py-20">
-            <div className="animate-spin h-12 w-12 border-t-2 border-b-2 border-teal-500 rounded-full"></div>
-          </div>
-        ) : (
-          sessions.length === 0 ? (
-            <div className="bg-slate-50 border-2 border-dashed border-slate-200 rounded-2xl sm:rounded-[2rem] py-16 sm:py-20 text-center">
-              <p className="text-slate-400 font-bold text-base sm:text-lg">No sessions yet.</p>
+        {/* HISTORY LIST (Now separate from the creation card) */}
+        <div className="space-y-6 pb-20 sm:pb-0">
+          <h2 className="text-xl sm:text-2xl font-semibold text-white flex items-center px-2"> Interview History</h2>
+          {isLoading && sessions.length === 0 ? (
+            <div className="flex items-center justify-center py-20">
+              <div className="animate-spin h-12 w-12 border-t-2 border-b-2 border-teal-400 rounded-full"></div>
             </div>
           ) : (
-            <div className="space-y-4">
-              {sessions.map((session) => (
-                <SessionCard key={session._id} session={session} onClick={viewSession} onDelete={handleDelete}/>
-              ))}
-            </div>
-          )
-        )}
-      </div>
+            sessions.length === 0 ? (
+              <div className="bg-white/[0.03] border-2 border-dashed border-white/10 rounded-2xl sm:rounded-[2rem] py-16 sm:py-20 text-center">
+                <p className="text-slate-500 font-semibold text-base sm:text-lg">No sessions yet.</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {sessions.map((session) => (
+                  <SessionCard key={session._id} session={session} onClick={viewSession} onDelete={handleDelete}/>
+                ))}
+              </div>
+            )
+          )}
+        </div>
 
+      </div>
     </div>
   )
 }

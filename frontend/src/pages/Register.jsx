@@ -62,48 +62,118 @@ const Register = () => {
 
   if(isLoading){
     return(
-      <div className='flex justify-center items-center h-screen'>
-      <div className='animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-teal-500'></div>
+      <div className='flex justify-center items-center h-screen bg-black'>
+      <div className='animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white'></div>
       </div>
     )
   }
 
   return (
-    <div className='flex justify-center items-center min-h-[90vh] bg-gray-50 sm:px-6 py-10'>
-      <div className='w-full max-w-md bg-white p-6 sm:p-10 border border-gray-200 rounded-2xl shadow-xl' >
+    <div
+      className="relative flex justify-center items-center min-h-[90vh] overflow-hidden bg-black px-4 py-10"
+      style={{
+        backgroundImage:
+          'radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)',
+        backgroundSize: '28px 28px',
+      }}
+    >
+
+      {/* ambient corner glows, purely decorative */}
+      <div className="pointer-events-none absolute -top-40 -left-40 h-[28rem] w-[28rem] rounded-full bg-purple-500/20 blur-[130px]" />
+      <div className="pointer-events-none absolute -bottom-40 -right-40 h-[28rem] w-[28rem] rounded-full bg-teal-500/20 blur-[130px]" />
+      <div className="pointer-events-none absolute top-1/3 left-1/4 h-64 w-64 rounded-full bg-cyan-400/10 blur-[100px]" />
+
+      <div className="relative z-10 w-full max-w-sm rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] p-8 sm:p-10 shadow-2xl backdrop-blur-xl">
+
         <div className='text-center mb-8'>
-          <h2 className='text-xs font-black uppercase tracking-[0.3em] text-teal-600 mb-2'>AI Interviewer</h2>
-          <h1 className='text-3xl sm:text-4xl font-black text-gray-900 leading-tight'>Get <span className='text-teal-500'>Started</span></h1>
-          <p className='text-gray-500 mt-3 text-sm sm:text-base px-2'>
-            Join thousands of developers practicing with AI Interviewer
+          <h1 className="text-3xl font-semibold text-white tracking-tight">Get Started</h1>
+          <p className="text-slate-400 mt-2 text-sm leading-relaxed px-2">
+            Join thousands of developers practicing with AI Interviewer.
           </p>
         </div>
 
-        <form onSubmit={onSubmit} className='grid grid-cols-1 gap-4'>
-          <div className='space-y-1'>
-            <label className='text-[10px] font-bold uppercase text-gray-400 ml-1'>Full Name</label>
-            <input type="text" name="name" value={name} className='w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none transition-all ' placeholder='Aditya Goyal' onChange={onChange} required />
-          </div>
-          <div className='space-y-1'>
-            <label className='text-[10px] font-bold uppercase text-gray-400 ml-1'>Email</label>
-            <input type="email" name="email" value={email} className='w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none transition-all ' placeholder='abc@gmail.com' onChange={onChange} required />
+        <form onSubmit={onSubmit} className='grid grid-cols-1 gap-3'>
 
+          <div className="relative">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </span>
+            <input
+              type="text"
+              name="name"
+              value={name}
+              onChange={onChange}
+              required
+              placeholder="Enter your full name"
+              className="w-full rounded-full border border-white/10 bg-white/5 py-3.5 pl-11 pr-4 text-sm text-white placeholder:text-slate-500 outline-none transition-all focus:border-white/30 focus:bg-white/10"
+            />
           </div>
-          <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
-            <div className='space-y-1'>
-              <label className='text-[10px] font-bold uppercase text-gray-400 ml-1'>Password</label>
-              <input type="password" name="password" value={password} className='w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none transition-all ' placeholder='********' onChange={onChange} required />
 
+          <div className="relative">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-3.51 7.12" />
+              </svg>
+            </span>
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={onChange}
+              required
+              placeholder="Enter your email address"
+              className="w-full rounded-full border border-white/10 bg-white/5 py-3.5 pl-11 pr-4 text-sm text-white placeholder:text-slate-500 outline-none transition-all focus:border-white/30 focus:bg-white/10"
+            />
+          </div>
+
+          <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
+            <div className="relative">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </span>
+              <input
+                type="password"
+                name="password"
+                value={password}
+                onChange={onChange}
+                required
+                placeholder="Password"
+                className="w-full rounded-full border border-white/10 bg-white/5 py-3.5 pl-11 pr-4 text-sm text-white placeholder:text-slate-500 outline-none transition-all focus:border-white/30 focus:bg-white/10"
+              />
             </div>
-            <div className='space-y-1'>
-              <label className='text-[10px] font-bold uppercase text-gray-400 ml-1'>Confirm</label>
-              <input type="password" name="password2" value={password2} className='w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none transition-all ' placeholder='********' onChange={onChange} required />
+            <div className="relative">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </span>
+              <input
+                type="password"
+                name="password2"
+                value={password2}
+                onChange={onChange}
+                required
+                placeholder="Confirm"
+                className="w-full rounded-full border border-white/10 bg-white/5 py-3.5 pl-11 pr-4 text-sm text-white placeholder:text-slate-500 outline-none transition-all focus:border-white/30 focus:bg-white/10"
+              />
             </div>
           </div>
-          <button type="submit" className='w-full bg-teal-600 text-white p-3.5 rounded-xl font-bold hover:bg-teal-700 transition-all shadow-lg shadow-teal-100 mt-4 active:scale-[0.98]'>Create My Account</button>
+
+          <button
+            type="submit"
+            className="w-full bg-white text-black py-3.5 rounded-full font-semibold text-sm mt-3 transition-all hover:bg-slate-200 active:scale-[0.98]"
+          >
+            Create My Account
+          </button>
         </form>
 
-        <p className='mt-8 text-center text-sm text-gray-500 '>Already have an account? <Link to="/login" className='text-teal-600  font-bold hover:underline'>Sign In</Link></p>
+        <p className="mt-8 text-center text-sm text-slate-400">
+          Already have an account? <Link to="/login" className="text-white font-semibold hover:underline">Sign In</Link>
+        </p>
 
       </div>
 

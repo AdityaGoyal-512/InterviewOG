@@ -15,9 +15,9 @@ import NotFound from './pages/NotFound';
 const App = () => {
   useSocket();
   return (
-    <div className='min-h-screen bg-gray-50'>
+    <div className='min-h-screen bg-black'>
       <Header />
-      <main className='container mx-auto p-4'>
+      <main>
         <Routes>
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
@@ -31,7 +31,7 @@ const App = () => {
         </Routes>
 
       </main>
-      <ToastContainer position='top-right' autoClose={3000}/>
+      <ToastContainer position='top-right' autoClose={3000} theme='dark'/>
 
     </div>
   )

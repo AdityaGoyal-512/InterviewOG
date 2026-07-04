@@ -23,7 +23,7 @@ const ROLES = [
   "QA Automation Engineer",
   "Product Manager"
 ];
-const inputBase = 'w-full bg-slate-50 border-2 border-transparent rounded-xl sm:rounded-2xl p-3.5  sm-4 fornt-semibold text-slate-700 text-base transition-all focus:bg-white focus:border-teal-500 outline-none';
+const inputBase = 'w-full bg-white/5 border-2 border-white/10 rounded-xl sm:rounded-2xl p-3.5 sm-4 font-semibold text-white text-base transition-all focus:bg-white/10 focus:border-teal-400 outline-none';
 const Profile = () => {
   const dispatch = useDispatch();
   const { user, isSuccess, isError, message, isProfileLoading } = useSelector((state) => state.auth);
@@ -65,66 +65,78 @@ const Profile = () => {
     dispatch(updateProfile(formData))
   }
   return (
-    <div className='max-w-4xl mx-auto px-4 py-6 sm:py-12 pb-24'>
-      <div className='bg-white rounded-3xl shadow-xl sm:shadow-2xl p-6 sm:p-12 border border-slate-100'>
-        <header className='mb-8'>
-          <h1 className='text-2xl sm:text-3xl font-black text-slate-900'>Edit Profile</h1>
-          <p className='text-sm text-slate-500 mt-1'>
-            Update your professional details and preferences
-          </p>
-        </header>
+    <div
+      className="relative min-h-screen bg-black overflow-hidden"
+      style={{
+        backgroundImage:
+          'radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)',
+        backgroundSize: '28px 28px',
+      }}
+    >
+     
+      <div className="pointer-events-none absolute -top-40 -right-40 h-[28rem] w-[28rem] rounded-full bg-purple-500/15 blur-[130px]" />
+      <div className="pointer-events-none absolute bottom-0 -left-40 h-[28rem] w-[28rem] rounded-full bg-teal-500/15 blur-[130px]" />
 
-        <form onSubmit={handleSubmit} className='space-y-6' >
+      <div className="relative z-10 max-w-4xl mx-auto px-4 py-6 sm:py-12 pb-24">
+        <div className='rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] p-6 sm:p-12 backdrop-blur-xl'>
+          <header className='mb-8'>
+            <h1 className='text-2xl sm:text-3xl font-semibold text-white'>Edit Profile</h1>
+            <p className='text-sm text-slate-400 mt-1'>
+              Update your professional details and preferences
+            </p>
+          </header>
 
-          <FormField label="Full Name">
-            <input
-              type="text"
-              className={inputBase}
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder='Enter your name'
-            />
-          </FormField>
+          <form onSubmit={handleSubmit} className='space-y-6' >
 
-          <FormField label="Email Address (Fixed)" muted>
-            <input
-              type="email"
-              className='w-full bg-slate-100 rounded-xl sm:rounded-2xl p-3.5  sm-4 fornt-semibold text-slate-500 text-base cursor-not-allowed'
-              disabled
-              value={formData.email}
-              onChange={handleChange}
+            <FormField label="Full Name">
+              <input
+                type="text"
+                className={inputBase}
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder='Enter your name'
+              />
+            </FormField>
 
-            />
-          </FormField>
+            <FormField label="Email Address (Fixed)" muted>
+              <input
+                type="email"
+                className='w-full bg-white/5 border-2 border-white/5 rounded-xl sm:rounded-2xl p-3.5 sm-4 font-semibold text-slate-500 text-base cursor-not-allowed'
+                disabled
+                value={formData.email}
+                onChange={handleChange}
 
-           <FormField label="Target Role">
-            <div className='relative'>
-              <select name="preferredRole" value={formData.preferredRole} onChange={handleChange} className={`${inputBase} appearance-none`}>
+              />
+            </FormField>
+
+             <FormField label="Target Role">
+              <div className='relative'>
+                <select name="preferredRole" value={formData.preferredRole} onChange={handleChange} className={`${inputBase} appearance-none`}>
+                  {
+                    ROLES.map((role) => (
+                      <option key={role} value={role} className='bg-black text-white'>{role}</option>
+                    ))
+                  }
+
+                </select>
+                <SelectArrow />
+              </div>
+            </FormField>
+
+            <div className='pt-4'>
+              <button
+                type='submit'
+                disabled={isProfileLoading}
+                className={`w-full flex items-center justify-center gap-2 py-4 font-semibold rounded-xl sm:rounded-2xl transition-all active:scale-[0.98] ${isProfileLoading ? 'bg-white/10 text-slate-500 cursor-wait' : 'bg-white text-black hover:bg-slate-200'}`}>
                 {
-                  ROLES.map((role) => (
-                    <option key={role} value={role}>{role}</option>
-                  ))
+                  isProfileLoading ? <Loader /> : 'Save Changes'
                 }
-
-              </select>
-              <SelectArrow />
+                </button>
             </div>
-          </FormField>
-
-          <div className='pt-4'>
-            <button
-              type='submit'
-              disabled={isProfileLoading}
-              className={`w-full flex items-center justify-center gap-2 py-4 font-bold rounded-xl sm:rounded-2xl transition-all active:scale-[0.98] ${isProfileLoading ? 'bg-slate-200 text-slate-400 cursor-wait' : 'bg-teal-600 text-white hover:bg-teal-700 shadow-lg shadow-teal-100'}`}>
-              {
-                isProfileLoading ? <Loader /> : 'Save Changes'
-              }
-              </button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-
     </div>
   )
 }
@@ -135,7 +147,7 @@ function FormField({ label, children, muted }) {
 
   return (
     <div className={`space-y-1.5 ${muted ? 'opacity-60' : ''}`}>
-      <label className='ml-1 text-[10px] sm:text-xs font-black text-slate-400 uppercase tracking-widest'>{label}</label>
+      <label className='ml-1 text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest'>{label}</label>
       {children}
     </div>
 
@@ -144,7 +156,7 @@ function FormField({ label, children, muted }) {
 
 function SelectArrow() {
   return (
-    <div className='absolute right-4 top-1/2  -translate-y-1/2 pointer-events-none text-slate-400'>
+    <div className='absolute right-4 top-1/2  -translate-y-1/2 pointer-events-none text-slate-500'>
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
@@ -160,7 +172,7 @@ function SelectArrow() {
 function Loader() {
   return (
     <>
-      <span className='w-5 h-5 border-2 border-slate-400 border-t-transparent animate-spin rounded-full' />
+      <span className='w-5 h-5 border-2 border-slate-500 border-t-transparent animate-spin rounded-full' />
       <span>Saving...</span>
     </>
   )
