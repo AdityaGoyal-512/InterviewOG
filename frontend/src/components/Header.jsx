@@ -31,8 +31,8 @@ const Header = () => {
             </svg>
           </div>
           <span className="text-lg sm:text-xl tracking-tight">
-            <span className="font-black text-white">AI</span>
-            <span className="font-normal text-slate-400 ml-1 hidden sm:inline">Interviewer</span>
+            <span className="font-black text-white">Interview</span>
+            <span className="font-normal text-slate-400 ml-1 hidden sm:inline">OG</span>
           </span>
         </Link>
         <nav className="hidden md:flex items-center space-x-6">
